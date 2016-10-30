@@ -185,9 +185,13 @@ static int flg;
     if (indexPath.section==0) {
         if (indexPath.row==0) {
             if (USERDEFINE.currentUser.Usermark==0) {
-              return [tableView dequeueReusableCellWithIdentifier:NGGHeadViewCellId];  
+                NGGHeadCell *cell=[tableView dequeueReusableCellWithIdentifier:NGGHeadViewCellId];
+              [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+              return cell;
             }
-            return [tableView dequeueReusableCellWithIdentifier:NGGHeadNewsViewCellId];
+            NGGHeadNewsViewCell *cell=[tableView dequeueReusableCellWithIdentifier:NGGHeadNewsViewCellId];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            return cell;
         }else{
             if (USERDEFINE.currentUser.Usermark==0) {
                 return [tableView dequeueReusableCellWithIdentifier:NGGFunctionViewCellId];
@@ -222,7 +226,11 @@ static int flg;
         bgView.backgroundColor=NGGHomeBgColor;
         UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(12, 0, bgView.ngg_width/2, 25)];
         label.ngg_centerY=bgView.ngg_centerY;
-        label.text=@"应用工具";
+        if (USERDEFINE.currentUser.Usermark==0) {
+            label.text=@"货品分类";
+        }else{
+            label.text=@"应用工具";
+        }
         [label setTextColor:[UIColor blackColor]];
         [bgView addSubview:label];
         return bgView;
