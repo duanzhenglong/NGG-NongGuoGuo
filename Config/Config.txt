@@ -1,0 +1,38 @@
+项目配置常见文件
+
+项目配置常见文件:
+1.main.m
+
+ 里面有一个程序的入口：main函数
+
+2.PRefix.pch文件
+
+* pch文件中的内容能被项目中的其他任何文件共享\包含\访问
+
+* 如果定义的内容只用在OC环境中，就必须定义在#ifdef __OBJC__和#endif之间
+
+3.InfoPlist.strings
+
+* 跟app的本地化相关(plist表相关内容放在这里，plist表名不能含‘info’)
+
+4.Info.plist:
+
+1> 它是全局配置文件  
+
+2 >新旧配置文件的对比
+
+Xcode3的时候，全局配置文件名：Info.plist
+
+Xcode4开始，全局配置文件名：项目名-Info.plist
+
+3> 项目中自定义的plist文件中不要包含info这个字眼
+
+4> 常见的配置
+
+Bundle display name : 软件名称
+
+Bundle identifier : app的唯一标识
+
+Bundle versions string, short : 软件版本号（更新app）
+
+Main storyboard file base name : 设置程序一启动就加载的storyboard文件

@@ -1,0 +1,137 @@
+
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/*** 如果希望某些内容能拷贝到任何源代码文件(OC\C\C++等), 那么就不要写在#ifdef __OBJC__和#endif之间 ***/
+
+
+/***** 在#ifdef __OBJC__和#endif之间的内容, 只会拷贝到OC源代码文件中, 不会拷贝到其他语言的源代码文件中 *****/
+
+#ifdef __OBJC__
+
+
+
+//#######################  1 #####################################
+/***  这里面写一些头文件  ***/
+
+/*全局delegate头文件*/
+#import "AppDelegate.h"
+ /*放一些常量的头文件*/
+#import "NGGConst.h"
+
+
+/**1.登陆*/
+#import "NGGLoginViewController.h"
+/**2.UIView扩展*/
+#import "UIView+NGGExtension.h"
+/**3.网络请求*/
+#import "AFNetworking.h"
+/**4.UIBarButtonItem的扩展*/
+#import "UIBarButtonItem+NGGExtension.h"
+/**5.MJExtension模型*/
+#import "MJExtension.h"
+/**6.发布按钮*/
+#import "NGGPublishSupply.h"
+/**7.环信SDK头文件*/
+#import "EMSDK.h"
+/**8.图片下载*/
+#import "UIImageView+WebCache.h"
+/***9.时间计算***/
+#import "NGGdate.h"
+
+#import "NGGGoodsAttribute.h"
+
+#import "NGGPurchaseCell.h"
+#import "NGGDonePurchaseCell.h"
+#import "NGGPublishViewController.h"
+#import "NGGGoodsProperty.h"
+
+/***  这里面写一些头文件  ***/
+
+//#######################  2 #####################################
+
+/*** 当前系统版本判断 ***/
+#define iOS(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
+
+//-------------------获取设备大小-------------------------
+//NavBar高度
+#define NavigationBar_HEIGHT 44
+//获取屏幕 宽度、高度
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+//#######################  3 #####################################
+/*** 日志 ***/
+#ifdef DEBUG
+#define NGGLog(...) NSLog(__VA_ARGS__)
+#else
+#define NGGLog(...)
+#endif
+//#######################  4 #####################################
+/*** 打印方法 ***/
+#define NGGLogFunc NGGLog(@"%s", __func__);
+
+//#######################  5 常用的宏 #####################################
+/*** 颜色 ***/
+#define NGGColorA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+/*** 颜色（透明度固定） ***/
+#define NGGColor(r, g, b) NGGColorA((r), (g), (b), 250)
+/*** 颜色（随机颜色） ***/
+#define NGGRandomColor NGGColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+/*** 颜色（灰色，颜色深度根据数值大小而定） ***/
+#define NGGrayColor(v) NGGColor((v), (v), (v))
+
+
+
+//rgb颜色转换（16进制->10进制）[数值前面加0x ]
+#define NGGColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define NGGBlackLabColor [UIColor blackColor]
+/*** 颜色（统一背景颜色） ***e7e7e7 f9f9f9*/
+#define NGGCommonBgColor NGGColorFromRGB(0xefeff5)
+ /***主页背景色***/
+#define NGGHomeBgColor NGGColorFromRGB(0xf9f9f9)
+/*** 主题颜色 ***/
+#define NGGTheMeColor NGGColorFromRGB(0x30c2bd)
+ /***分割线的颜色*** NGGColorFromRGB(0xdcdb5)   */
+//#define NGGCutLineColor [UIColor orangeColor] 
+#define NGGCutLineColor NGGColorFromRGB(0xdcdbe5)
+
+//#######################  6 常用的宏 #####################################
+//G－C－D
+//开启异步线程
+#define kDISPATCH_GLOBAL_QUEUE_DEFAULT(globalQueueBlock) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), globalQueueBlock)
+//在Main线程上运行
+#define kDISPATCH_MAIN_THREAD(mainQueueBlock) dispatch_async(dispatch_get_main_queue(),^{mainQueueBlock})
+//GCD - 一次性执行
+#define kDISPATCH_ONCE_BLOCK(onceBlock) static dispatch_once_t onceToken;dispatch_once(&onceToken, onceBlock);
+
+//获取沙盒 Document
+#define kPathDocument [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+
+//###################################################################################
+
+/*程序中用到的宏*/
+   //登陆界面
+#define LoginView [[UINavigationController alloc]initWithRootViewController:[[NGGLoginViewController alloc] init]]
+ /*全局用户单例*/
+#define USERDEFINE ((AppDelegate *) [[UIApplication sharedApplication] delegate])
+
+ /***全局个人信息单例***/
+#define APPDELEGATE ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+
+
+
+
+
+
+
+
+
+#endif
+/***** 在#ifdef __OBJC__和#endif之间的内容, 只会拷贝到OC源代码文件中, 不会拷贝到其他语言的源代码文件中 *****/
+
+
+
+
+#endif
