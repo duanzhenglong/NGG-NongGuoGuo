@@ -174,7 +174,7 @@
 -(void)NoticeInfo:(NSString *)message{
     
     UILabel *NoticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 220, 30)];
-    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height/2-120);
+    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height-100);
     NoticeLabel.text=message;
     NoticeLabel.textAlignment=NSTextAlignmentCenter;
     NoticeLabel.textColor=[UIColor whiteColor];

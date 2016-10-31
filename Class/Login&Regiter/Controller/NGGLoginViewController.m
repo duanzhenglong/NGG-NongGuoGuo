@@ -125,6 +125,20 @@
     [CloseBtn setImage:[UIImage imageNamed:@"quit"] forState:UIControlStateNormal];
     [CloseBtn addTarget:self action:@selector(CloseClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:CloseBtn];
+    /***图标***/
+    UIImageView*imageview=[[UIImageView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-85, 60, 60)];
+    imageview.ngg_centerX=SCREEN_WIDTH/2;
+    imageview.backgroundColor=NGGRandomColor;
+    imageview.image=[UIImage imageNamed:@"nongguoguo"];
+    [self.view addSubview:imageview];
+    /***提示信息***/
+    UILabel*Alabel=[[UILabel alloc]initWithFrame:CGRectMake(0, imageview.ngg_bottom+5, SCREEN_WIDTH/2, 10)];
+    Alabel.ngg_centerX=SCREEN_WIDTH/2;
+    Alabel.textColor=[UIColor blackColor];
+    [Alabel setFont:[UIFont systemFontOfSize:10 weight:1]];
+    Alabel.textAlignment=NSTextAlignmentCenter;
+    Alabel.text=@"农果果Nuoguoguo";
+    [self.view addSubview:Alabel];
     
 }
 
@@ -177,7 +191,7 @@
 -(void)NoticeInfo:(NSString *)message{
     
     UILabel *NoticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 220, 30)];
-    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height/2-120);
+    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height-120);
     NoticeLabel.text=message;
     NoticeLabel.textAlignment=NSTextAlignmentCenter;
     NoticeLabel.textColor=[UIColor whiteColor];

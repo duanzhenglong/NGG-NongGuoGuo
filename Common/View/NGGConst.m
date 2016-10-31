@@ -59,6 +59,9 @@ NSString * const addorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/ho
 NSString * const buyorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/buyorder";
 /***22.买家取消订单信息***/
 NSString * const CancleorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/Cancleorder";
+/***23.卖家查看订单信息***/
+NSString * const sellerorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/sellerorder";
+
 
 //############################################################################
 

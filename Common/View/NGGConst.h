@@ -60,7 +60,8 @@ UIKIT_EXTERN NSString * const addorderURL;
 UIKIT_EXTERN NSString * const buyorderURL;
 /***22.买家取消订单信息***/
 UIKIT_EXTERN NSString * const CancleorderURL;
-
+/***23.卖家查看订单信息***/
+UIKIT_EXTERN NSString * const sellerorderURL;
 
 
 
