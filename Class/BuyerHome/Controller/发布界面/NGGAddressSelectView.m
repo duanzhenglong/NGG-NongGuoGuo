@@ -12,7 +12,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
-        self.backgroundColor=[[UIColor blackColor]colorWithAlphaComponent:0.4];
+        self.backgroundColor=[UIColor whiteColor];
         [self reloadAddressData];
     }
     return self;
@@ -49,6 +49,7 @@
                 [Btn addTarget:self action:@selector(SelectClick:) forControlEvents:UIControlEventTouchUpInside];
                 [self addSubview:Btn];
             }
+            self.ngg_height=self.subviews.lastObject.ngg_bottom;
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];

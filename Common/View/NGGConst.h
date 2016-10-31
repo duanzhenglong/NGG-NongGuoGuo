@@ -54,9 +54,12 @@ UIKIT_EXTERN NSString * const addPrivilegeURL;
 UIKIT_EXTERN NSString * const lookGoodsURL;
 /***19.查询地区的id和名称***/
 UIKIT_EXTERN NSString * const inqureAlladdressURL;
-
-
-
+/***20.上传订单信息***/
+UIKIT_EXTERN NSString * const addorderURL;
+/***21.买家查看订单信息***/
+UIKIT_EXTERN NSString * const buyorderURL;
+/***22.买家取消订单信息***/
+UIKIT_EXTERN NSString * const CancleorderURL;
 
 
 

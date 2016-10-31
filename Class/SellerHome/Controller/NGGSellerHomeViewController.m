@@ -21,7 +21,6 @@
 #import "NGGGoodsClassViewCell.h"
 #import "NGGGoodsTableViewCell.h"
 #import "NGGHeadCell.h"
-
 @interface NGGSellerHomeViewController (){
     CGFloat contentOffsetY;
     CGFloat newContentOffsetY;
@@ -69,7 +68,6 @@ static int flg;
         [[AFHTTPRequestOperationManager alloc] init];
         //必须设置
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        
         [manager POST:PrivilegesURL
            parameters:nil
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -119,7 +117,6 @@ static int flg;
     [self.tableView registerClass:[NGGChannelViewCell class] forCellReuseIdentifier:NGGChannelViewCellId];
     [self.tableView registerClass:[NGGToolViewCell class] forCellReuseIdentifier:NGGToolViewCellId];
   
-    
     [self.tableView registerClass:[NGGHeadCell class]
            forCellReuseIdentifier:NGGHeadViewCellId];
     [self.tableView registerClass:[NGGFunctionViewCell class]
@@ -133,7 +130,17 @@ static int flg;
 #pragma mark- tableView的一些属性
 -(void)SetTableViewAttri{
      /*tableview表头创建*/
-    self.tableView.tableHeaderView=[[NGGSellerHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
+    NSArray *arr = @[
+                  [UIImage imageNamed:@"dazhaxie"],//本地图片，传image，不能传名称
+                  [UIImage imageNamed:@"shucai"],
+                  [UIImage imageNamed:@"shuidao"],
+                  [UIImage imageNamed:@"shuiguo"],
+                  [UIImage imageNamed:@"zoudiji"],
+                  ];
+    NGGSellerHomeHeaderView*header=[[NGGSellerHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
+    [header setimageArray:arr];
+    self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
+    [self.tableView.tableHeaderView addSubview:header];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator=NO;
 }
@@ -295,6 +302,4 @@ static int flg;
    if (flg==USERDEFINE.currentUser.Usermark)  return;
     [self viewDidLoad];
 }
-
-
 @end

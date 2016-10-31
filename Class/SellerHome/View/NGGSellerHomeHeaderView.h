@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NGGSellerHomeHeaderView : UIView
-
+-(void)setimageArray:(NSArray*)imagearray;
 @end

@@ -241,8 +241,8 @@
 
   /*创建发布button*/
   UIButton *button =
-      [[UIButton alloc] initWithFrame:CGRectMake(20, view8.ngg_bottom + 75,
-                                                 SCREEN_WIDTH - 40, 35)];
+      [[UIButton alloc] initWithFrame:CGRectMake(20, view8.ngg_bottom + 65,
+                                                 SCREEN_WIDTH - 40, 40)];
   [button setBackgroundColor:NGGTheMeColor];
   [button setTitle:@"确认采购" forState:UIControlStateNormal];
   [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -258,9 +258,9 @@
 
 #pragma mark-所在地按钮点击事件
 -(void)AddressClick:(UIButton*)sender{
-    NGGAddressSelectView *address=[[NGGAddressSelectView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH/4-SCREEN_WIDTH/2, SCREEN_HEIGHT/6, SCREEN_WIDTH/2, SCREEN_HEIGHT/2)];
+    NGGAddressSelectView *address=[[NGGAddressSelectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2)];
     [UIView animateWithDuration:0.5 animations:^{
-        address.ngg_x=SCREEN_WIDTH/4;
+        address.ngg_y=address.ngg_height;
     }];
     [self.tableView addSubview:address];
     address.addressBlock=^(NSInteger tag,NSString *title){

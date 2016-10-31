@@ -53,7 +53,12 @@ NSString * const addPrivilegeURL = @"http://10.110.5.87:8888/NongGuoGuo/index.ph
 NSString * const lookGoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Goods/lookGoods";
 /***19.查询地区的id和名称***/
 NSString * const inqureAlladdressURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Address/inqureAlladdress";
-
+/***20.上传订单信息***/
+NSString * const addorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/addorder";
+/***21.买家查看订单信息***/
+NSString * const buyorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/buyorder";
+/***22.买家取消订单信息***/
+NSString * const CancleorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/Cancleorder";
 
 //############################################################################
 

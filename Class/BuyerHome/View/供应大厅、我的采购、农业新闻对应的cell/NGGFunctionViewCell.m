@@ -7,7 +7,7 @@
 //
 
 #import "NGGFunctionViewCell.h"
-#import "NGGPurchaseViewController.h"
+#import "NGGMyPurchaseViewController.h"
 #import "NGGResetButton.h"
 #import "NGGSupplyVC.h"
 #import "NGGNewsViewController.h"
@@ -105,7 +105,7 @@
 
 #pragma mark -我的采购事件处理
 - (void)PurchaseBtnClick:(NGGResetButton *)sender {
-    [self setViewController:[[NGGPurchaseViewController alloc]init]];
+    [self setViewController:[[NGGMyPurchaseViewController alloc]init]];
 }
 
 

@@ -11,6 +11,7 @@
 #import "NGGSupplyImageViewCell.h"
 #import "NGGMyShopViewController.h"
 #import "NGGTSearchView.h"
+#import "NGGAddorder.h"
 @interface NGGSupplyDescViewController ()
  /***图片数组***/
 @property (strong, nonatomic) NSArray* imageArray;
@@ -135,7 +136,7 @@
     /***详情描述***/
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
     view.backgroundColor=NGGCommonBgColor;
-    /***进店铺按钮***/
+    /***立即买按钮***/
     UIButton* Btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 50)];
     [Btn setBackgroundColor:NGGTheMeColor];
     [Btn setTitle:@"立即买" forState:UIControlStateNormal];
@@ -158,7 +159,17 @@
 
 #pragma mark-下订单
 -(void)BuyGoods:(UIButton*)sender{
-    
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    NGGAddorder *addorder=[[NGGAddorder alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [UIView animateWithDuration:0.5 animations:^{
+        addorder.ngg_y=0;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{
+            addorder.backgroundColor=[[UIColor blackColor]colorWithAlphaComponent:0.8];
+        }];
+    }];
+    addorder.property=self.attribute;
+    [window addSubview:addorder];
     
 }
 
