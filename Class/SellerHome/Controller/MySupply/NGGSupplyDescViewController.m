@@ -24,7 +24,7 @@
     [NGGTSearchView HiddenSeatchView];
     self.tableView.backgroundColor=NGGCommonBgColor;
     self.tableView.sectionHeaderHeight=40;
-    self.tableView.sectionFooterHeight=50;
+    self.tableView.sectionFooterHeight=45;
     self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 330)];
     self.tableView.tableHeaderView.backgroundColor=[UIColor whiteColor];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -32,8 +32,47 @@
     [self setimageArray];
      /***创建控件***/
     [self CreatCustomizeControls];
+    UIBarButtonItem *button=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(collectClick:)];
+    self.navigationItem.rightBarButtonItem=button;
     
 }
+
+-(void)collectClick:(UIBarButtonItem*)sender{
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    
+    NSDictionary *myParameters = @{
+                                   @"userid":@(USERDEFINE.currentUser.userId),
+                                   @"supplylistid":@(self.attribute.supplylist_id)
+                                   };
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:collectgoodsURL parameters:myParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString*str=responseObject[@"message"];
+        [self NoticeInfo:str];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NGGLog(@"11");
+    }];
+}
+
+-(void)NoticeInfo:(NSString *)message{
+    UILabel *NoticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 220, 30)];
+    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height/2);
+    NoticeLabel.text=message;
+    NoticeLabel.textAlignment=NSTextAlignmentCenter;
+    NoticeLabel.textColor=[UIColor whiteColor];
+    NoticeLabel.backgroundColor=[UIColor grayColor];
+    NoticeLabel.layer.cornerRadius=6;
+    NoticeLabel.layer.masksToBounds=YES;
+    //动画效果
+    [UIView animateWithDuration:2.5 animations:^{
+        NoticeLabel.alpha=1;
+        [self.view addSubview:NoticeLabel];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2.5 animations:^{
+            NoticeLabel.alpha=0;
+        }];
+    }];
+}
+
 
 #pragma mark-接收所有图片
 -(void)setimageArray{
@@ -134,10 +173,10 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     /***详情描述***/
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
     view.backgroundColor=NGGCommonBgColor;
     /***立即买按钮***/
-    UIButton* Btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 50)];
+    UIButton* Btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 45)];
     [Btn setBackgroundColor:NGGTheMeColor];
     [Btn setTitle:@"立即买" forState:UIControlStateNormal];
     [Btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -146,7 +185,7 @@
     [Btn addTarget:self action:@selector(BuyGoods:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:Btn];
     /***聊一聊***/
-    UIButton* Btn1=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2+1, 0, SCREEN_WIDTH/2-1, 50)];
+    UIButton* Btn1=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2+1, 0, SCREEN_WIDTH/2-1, 45)];
     [Btn1 setBackgroundColor:NGGTheMeColor];
     [Btn1 setTitle:@"聊一聊" forState:UIControlStateNormal];
     [Btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

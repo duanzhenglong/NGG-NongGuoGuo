@@ -78,6 +78,7 @@
     if (!cell) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
     }
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     if (indexPath.section==0) {
         [self CreatCustomizeControlFrist:cell];
     }else{
@@ -147,7 +148,6 @@
     [cell addSubview:imageview];
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(imageview.ngg_right+40, imageview.ngg_y, 80, 25)];
-    label.backgroundColor=NGGRandomColor;
     if (self.flg==1) {
       label.text=@"电话特权:";
     }else{
@@ -157,10 +157,9 @@
     [label setTextColor:[UIColor blackColor]];
     [cell addSubview:label];
     
-    UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(imageview.ngg_right+40, label.ngg_bottom+15, 80, 25)];
-    label1.backgroundColor=NGGRandomColor;
+    UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(imageview.ngg_right+50, label.ngg_bottom+15, 80, 25)];
     if (self.flg==1) {
-        label1.text=@"20元 5次";
+        label1.text=@"20元 30次";
     }else{
         label1.text=@"100元 /月";
     }
@@ -171,19 +170,18 @@
 
 #pragma mark-第2个cell中的控件
 -(void)CreatCustomizeControlSce:(UITableViewCell*)cell{
-    UIImageView* imageview=[[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 60, 60)];
+    UIImageView* imageview=[[UIImageView alloc]initWithFrame:CGRectMake(25, 10, 50, 50)];
     imageview.backgroundColor=NGGRandomColor;
     [cell addSubview:imageview];
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(imageview.ngg_right+30,0, 80, 25)];
     label.ngg_centerY=40;
-    label.backgroundColor=NGGRandomColor;
     label.text=@"支付宝";
     [label setFont:[UIFont systemFontOfSize:14 weight:1]];
     [label setTextColor:[UIColor blackColor]];
     [cell addSubview:label];
     
-    UIButton*Button=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-70, 0, 20, 20)];
+    UIButton*Button=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 0, 20, 20)];
     Button.backgroundColor=NGGRandomColor;
     Button.ngg_centerY=40;
     [cell addSubview:Button];
@@ -191,23 +189,21 @@
 
 #pragma mark-第3个cell中的控件
 -(void)CreatCustomizeControlTre:(UITableViewCell*)cell{
-    UIImageView* imageview=[[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 60, 60)];
+    UIImageView* imageview=[[UIImageView alloc]initWithFrame:CGRectMake(25, 10, 50, 50)];
     imageview.backgroundColor=NGGRandomColor;
     [cell addSubview:imageview];
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(imageview.ngg_right+30,0, 80, 25)];
     label.ngg_centerY=40;
-    label.backgroundColor=NGGRandomColor;
     label.text=@"微信";
     [label setFont:[UIFont systemFontOfSize:14 weight:1]];
     [label setTextColor:[UIColor blackColor]];
     [cell addSubview:label];
     
-    UIButton*Button=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-70, 0, 20, 20)];
+    UIButton*Button=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-40, 0, 20, 20)];
     Button.backgroundColor=NGGRandomColor;
     Button.ngg_centerY=40;
     [cell addSubview:Button];
 }
-
 
 @end

@@ -38,7 +38,9 @@
     self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
     self.tableView.tableHeaderView.backgroundColor=NGGCommonBgColor;
     self.tableView.sectionFooterHeight=60;
-    /**
+    UIBarButtonItem *button=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(collectClick:)];
+    self.navigationItem.rightBarButtonItem=button;
+    /**]
      *  创建控件
      */
     [self CreatCustomizeControls];
@@ -47,6 +49,45 @@
      /***获取还剩多长时间***/
      self.surplustimeLabel.text=[NGGdate stratime:self.attribute.needlist_surplustime andTimeinterval:[self.attribute.needlist_timeinterval intValue]];
 
+}
+
+-(void)collectClick:(UIBarButtonItem*)sender{
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    
+    NSDictionary *myParameters = @{
+                                   @"userid":@(USERDEFINE.currentUser.userId),
+                                   @"needlistid":@(self.attribute.needlist_id)
+                                   };
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:scollectgoodsURL parameters:myParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString*str=responseObject[@"message"];
+        [self NoticeInfo:str];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
+
+#pragma mark-获取提示信息
+-(void)NoticeInfo:(NSString *)message{
+    
+    UILabel *NoticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 220, 30)];
+    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height/2);
+    NoticeLabel.text=message;
+    NoticeLabel.textAlignment=NSTextAlignmentCenter;
+    NoticeLabel.textColor=[UIColor whiteColor];
+    NoticeLabel.backgroundColor=[UIColor grayColor];
+    NoticeLabel.layer.cornerRadius=6;
+    NoticeLabel.layer.masksToBounds=YES;
+    //动画效果
+    [UIView animateWithDuration:2.5 animations:^{
+        NoticeLabel.alpha=1;
+        [self.view addSubview:NoticeLabel];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2.5 animations:^{
+            NoticeLabel.alpha=0;
+        }];
+    }];
 }
 
 #pragma mark-查询用户信息

@@ -40,10 +40,8 @@
     [Label1 setFont:[UIFont systemFontOfSize:17 weight:2]];
     [view1 addSubview:Label1];
     
-    self.textfield1=[[UITextField alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-SCREEN_WIDTH*3/4-16, 0, SCREEN_WIDTH*3/4, 30)];
-    self.textfield1.borderStyle=UITextBorderStyleLine;
-    self.textfield1.layer.borderWidth=1;
-    self.textfield1.layer.borderColor=NGGCommonBgColor.CGColor;
+    self.textfield1=[[UITextField alloc]initWithFrame:CGRectMake(Label1.ngg_right, 0, SCREEN_WIDTH-Label1.ngg_width-10, 30)];
+    self.textfield1.borderStyle=UITextBorderStyleNone;
     self.textfield1.ngg_centerY=view1.ngg_height/2;
     [view1 addSubview:self.textfield1];
     /*添加2视图*/
@@ -58,10 +56,8 @@
     [Label2 setFont:[UIFont systemFontOfSize:17 weight:2]];
     [view2 addSubview:Label2];
     
-     self.textfield2=[[UITextField alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-SCREEN_WIDTH*3/4-16, 0, SCREEN_WIDTH*3/4, 30)];
-    self.textfield2.borderStyle=UITextBorderStyleLine;
-    self.textfield2.layer.borderWidth=1;
-    self.textfield2.layer.borderColor=NGGCommonBgColor.CGColor;
+     self.textfield2=[[UITextField alloc]initWithFrame:CGRectMake(Label2.ngg_right, 0, SCREEN_WIDTH-Label2.ngg_width-10, 30)];
+    self.textfield2.borderStyle=UITextBorderStyleNone;
     self.textfield2.ngg_centerY=view2.ngg_height/2;
     [view2 addSubview:self.textfield2];
     /*添加3视图*/
@@ -76,10 +72,8 @@
     [Label3 setFont:[UIFont systemFontOfSize:17 weight:2]];
     [view3 addSubview:Label3];
     
-    self.textfield3=[[UITextField alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-SCREEN_WIDTH*3/4-14, 0, SCREEN_WIDTH*3/4, 30)];
-    self.textfield3.borderStyle=UITextBorderStyleLine;
-    self.textfield3.layer.borderWidth=1;
-    self.textfield3.layer.borderColor=NGGCommonBgColor.CGColor;
+    self.textfield3=[[UITextField alloc]initWithFrame:CGRectMake(Label3.ngg_right, 0, SCREEN_WIDTH-Label3.ngg_width+10, 30)];
+    self.textfield3.borderStyle=UITextBorderStyleNone;
     self.textfield3.ngg_centerY=view3.ngg_height/2;
     [view3 addSubview:self.textfield3];
     /*添加4视图*/
@@ -93,10 +87,8 @@
     [Label4 setFont:[UIFont systemFontOfSize:17 weight:2]];
     [view4 addSubview:Label4];
     
-    self.textfield4=[[UITextField alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-SCREEN_WIDTH*3/4-16, 0, SCREEN_WIDTH*3/4, 30)];
-    self.textfield4.borderStyle=UITextBorderStyleLine;
-    self.textfield4.layer.borderWidth=1;
-    self.textfield4.layer.borderColor=NGGCommonBgColor.CGColor;
+    self.textfield4=[[UITextField alloc]initWithFrame:CGRectMake(Label4.ngg_right, 0, SCREEN_WIDTH-Label4.ngg_width-10, 30)];
+    self.textfield4.borderStyle=UITextBorderStyleNone;
     self.textfield4.ngg_centerY=view4.ngg_height/2;
     [view4 addSubview:self.textfield4];
     /*添加5视图*/
@@ -113,7 +105,7 @@
     self.textview.delegate=self;
     
      /*创建报价button*/
-    UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(20, SCREEN_HEIGHT-60, SCREEN_WIDTH-40, 45)];
+    UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(20, SCREEN_HEIGHT-60, SCREEN_WIDTH-40, 40)];
     [button setBackgroundColor:NGGTheMeColor];
     [button setTitle:@"报  价" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -126,6 +118,22 @@
 }
 
 -(void)ButtonClick:(UIButton*)sender{
+    if ([self.textfield1.text isEqualToString:@""]) {
+        [self NoticeInfo:@"供货地址不能为空!"];return;
+    }
+    if ([self.textfield2.text isEqualToString:@""]) {
+        [self NoticeInfo:@"供货量不能为空!"];return;
+    }
+    if ([self.textfield3.text isEqualToString:@""]) {
+        [self NoticeInfo:@"供货价格不能为空!"];return;
+    }
+    if ([self.textfield4.text isEqualToString:@""]) {
+        [self NoticeInfo:@"联系人不能为空!"];return;
+    }
+    if ([self.textview.text isEqualToString:@""]) {
+        [self NoticeInfo:@"描述内容不能为空!"];return;
+    }
+    
     AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
     
     NSDictionary *myParameters = @{
@@ -133,7 +141,7 @@
                                    @"number":self.textfield2.text,
                                    @"price":self.textfield3.text,
                                    @"desc":self.textview.text,
-                                   @"userid":@"1",//卖家id
+                                   @"userid":@(USERDEFINE.currentUser.userId),//卖家id
                                    @"userid1":[NSString stringWithFormat:@"%d",self.byerid],//买家id
                                    @"goodsname":self.goodsname,
                                    @"mask":@"0",
@@ -157,6 +165,29 @@
     [self.textview setFont:[UIFont systemFontOfSize:15 weight:1]];
     self.textview.textColor=[UIColor blackColor];
 }
+
+#pragma mark-获取提示信息
+-(void)NoticeInfo:(NSString *)message{
+    
+    UILabel *NoticeLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 220, 30)];
+    NoticeLabel.center=CGPointMake(self.view.ngg_width/2, self.view.ngg_height-150);
+    NoticeLabel.text=message;
+    NoticeLabel.textAlignment=NSTextAlignmentCenter;
+    NoticeLabel.textColor=[UIColor whiteColor];
+    NoticeLabel.backgroundColor=[UIColor grayColor];
+    NoticeLabel.layer.cornerRadius=6;
+    NoticeLabel.layer.masksToBounds=YES;
+    //动画效果
+    [UIView animateWithDuration:2.5 animations:^{
+        NoticeLabel.alpha=1;
+        [self.view addSubview:NoticeLabel];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2.5 animations:^{
+            NoticeLabel.alpha=0;
+        }];
+    }];
+}
+
 
 #pragma mark-键盘处理
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

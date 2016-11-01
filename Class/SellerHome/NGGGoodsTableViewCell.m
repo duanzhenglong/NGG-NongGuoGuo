@@ -79,7 +79,7 @@
     self.Price=Alabel;
     
     /*创建地址Label*/
-    self.AddressLab=[[UILabel alloc]initWithFrame:CGRectMake(self.ImgView.ngg_right+5, Alabel.ngg_bottom+10, 0, 20)];
+    self.AddressLab=[[UILabel alloc]initWithFrame:CGRectMake(self.ImgView.ngg_right+5, Alabel.ngg_bottom+10, 60, 20)];
     [self.AddressLab setFont:[UIFont systemFontOfSize:14]];
     [self.AddressLab setTextColor:[UIColor lightGrayColor]];
     [self addSubview:self.AddressLab];
@@ -111,8 +111,6 @@
     
     self.TitleLabel.text = Attribute.supplylist_goodsname;
     self.AddressLab.text = Attribute.address_name;
-    self.AddressLab.numberOfLines=0;
-    [self.AddressLab sizeToFit];
     
     self.NumberLabel.text = [NSString stringWithFormat:@"%@斤起批",Attribute.supplylist_minnumber];
     

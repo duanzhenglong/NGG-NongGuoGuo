@@ -134,9 +134,12 @@ UIKIT_EXTERN NSString *const PrivilegesURL;
 UIKIT_EXTERN NSString *const myPurchaseURL;
 /*22.买家搜索数据接口URL*/
 UIKIT_EXTERN NSString *const GoodsIdSupplylistURL;
-
-
-
+/***24.买家收藏***/
+UIKIT_EXTERN NSString * const collectgoodsURL;
+/***25.卖家收藏***/
+UIKIT_EXTERN NSString * const scollectgoodsURL;
+/***26.用户认证***/
+UIKIT_EXTERN NSString * const certificationURL;
 
 
 

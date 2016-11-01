@@ -9,7 +9,7 @@
 #import "NGGChannelViewCell.h"
 #import "NGGResetButton.h"
 #import "NGGLobbyViewController.h"
-#import "NGGMySupplyViewController.h"
+#import "NGGMyViewController.h"
 #import "NGGNewsViewController.h"
 @implementation NGGChannelViewCell
 
@@ -97,7 +97,7 @@
 
 #pragma mark-我的供应事件处理
 -(void)SupplyBtnClick:(NGGResetButton*)sender{
-    [self setViewController:[[NGGMySupplyViewController alloc]init]];
+    [self setViewController:[[NGGMyViewController alloc]init]];
 }
 
 #pragma mark-农业新闻事件处理

@@ -41,11 +41,11 @@
 -(void)UnifyTextFont{
     //正常状态
     NSMutableDictionary *Arr=[NSMutableDictionary dictionary];
-    Arr[NSFontAttributeName]=[UIFont systemFontOfSize:15];
+    Arr[NSFontAttributeName]=[UIFont systemFontOfSize:13];
     Arr[NSForegroundColorAttributeName]=[UIColor grayColor];
     //选中状态
     NSMutableDictionary *SelectedArr=[NSMutableDictionary dictionary];
-    SelectedArr[NSFontAttributeName]=[UIFont systemFontOfSize:15];
+    SelectedArr[NSFontAttributeName]=[UIFont systemFontOfSize:13];
     SelectedArr[NSForegroundColorAttributeName]=NGGTheMeColor;
     
     //统一item 用appearance属性

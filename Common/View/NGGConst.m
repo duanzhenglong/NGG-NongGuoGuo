@@ -61,6 +61,12 @@ NSString * const buyorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/ho
 NSString * const CancleorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/Cancleorder";
 /***23.卖家查看订单信息***/
 NSString * const sellerorderURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/Order/sellerorder";
+/***24.买家收藏***/
+NSString * const collectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect/collectgoods";
+/***25.卖家收藏***/
+NSString * const scollectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect2/collectgoods";
+/***26.用户认证***/
+NSString * const certificationURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/user/certification";
 
 
 //############################################################################

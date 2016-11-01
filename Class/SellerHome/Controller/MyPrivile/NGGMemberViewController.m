@@ -20,7 +20,7 @@
     self.tableView.backgroundColor=NGGCommonBgColor;
     self.tableView.sectionHeaderHeight=50;
     self.tableView.sectionFooterHeight=50;
-    self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
+    self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3-50)];
     self.tableView.tableHeaderView.backgroundColor=NGGCommonBgColor;
     /**
      *  创建控件
@@ -40,16 +40,6 @@
     [PrivilegeBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [PrivilegeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.tableView.tableHeaderView addSubview:PrivilegeBtn];
-    
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, window.ngg_height-50, SCREEN_WIDTH, 50)];
-    [window addSubview:view];
-    self.view3=view;
-    view.backgroundColor=NGGTheMeColor;
-    UIButton*Btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-    [Btn setTitle:@"立即购买" forState:UIControlStateNormal];
-    [Btn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:Btn];
 }
 
 #pragma mark - Table view data source
@@ -80,6 +70,16 @@
     return view;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    view.backgroundColor=NGGTheMeColor;
+    UIButton*Btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    [Btn setTitle:@"立即购买" forState:UIControlStateNormal];
+    [Btn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:Btn];
+    return view;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return SCREEN_HEIGHT*2/3-50;
 }
@@ -95,13 +95,11 @@
     Label1.text=@"| 有效时间";
     [Label1 setTextColor:[UIColor orangeColor]];
     [Label1 setFont:[UIFont systemFontOfSize:14]];
-    Label1.backgroundColor=NGGRandomColor;
     [cell addSubview:Label1];
     /*有效时间内容*/
     UILabel*Label2=[[UILabel alloc]initWithFrame:CGRectMake(12, Label1.ngg_bottom+5, SCREEN_WIDTH-24,0)];
-    Label2.text=@"枯井奇功djfldksjflkjdslgfjdaljfldjlfjdsalfjadslgfjldsjfglkdsjgfljdsflgjdslkg";
+    Label2.text=@"自购买起至特权时间结束";
     [Label2 setTextColor:[UIColor blackColor]];
-    Label2.backgroundColor=NGGRandomColor;
     Label2.numberOfLines=0;
     [Label2 sizeToFit];
     [Label2 setFont:[UIFont systemFontOfSize:14]];
@@ -114,7 +112,7 @@
     [cell addSubview:Label3];
     /*特权内容*/
     UILabel*Label4=[[UILabel alloc]initWithFrame:CGRectMake(12, Label3.ngg_bottom+5, SCREEN_WIDTH-24, 50)];
-    Label4.text=@"daljfldjlfjdsalfjadslgfjldsjfglkdsjgfljdsflgjdslkgfjdslkgjladsjglkdsjgljdslfjdslfjdslfjdlskjfldsjfljsdfljdslfkjdsljflkdsjfldsjflkdsjflkjdsfljdslkfjdslfjlkdsafjd";
+    Label4.text=@"1.排名优先，掌握商机\n2.赠送电话特权(20次)\n3.抢单利器，精准消息";
     [Label4 setTextColor:[UIColor blackColor]];
     Label4.numberOfLines=0;
     [Label4 sizeToFit];
@@ -128,7 +126,7 @@
     [cell addSubview:Label5];
     /*特权对象内容*/
     UILabel*Label6=[[UILabel alloc]initWithFrame:CGRectMake(12, Label5.ngg_bottom+5, SCREEN_WIDTH-24, 50)];
-    Label6.text=@"daljfldjlfjdsalfjadslgfjldsjfglkdsjgfljdsflgjdslkgfjdslkgjladsjglkdsjgljdslfjdslfjdslfjdlskjfldsjfljsdfljdslfkjdsljflkdsjfldsjflkdsjflkjdsfljdslkfjdslfjlkdsafjd";
+    Label6.text=@"凡购买此特权用户";
     [Label6 setTextColor:[UIColor blackColor]];
     Label6.numberOfLines=0;
     [Label6 sizeToFit];

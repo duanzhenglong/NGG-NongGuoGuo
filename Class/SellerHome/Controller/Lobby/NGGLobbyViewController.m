@@ -99,18 +99,6 @@
 #pragma mark-Button1的响应事件
 -(void)Button1:(UIButton*)sender{
     [NGGCategoryofAd ShowAdCategoryView];
-//    NGGCategoryofAd* CategoryView=[[NGGCategoryofAd alloc]init];
-//    
-//    __weak NGGLobbyViewController*weakself=self;
-//    CategoryView.AdCategoryView=^(NSString*string1){
-        /***根据分类查询物品信息***/
-//        NSDictionary *myParameters = @{
-//                                       @"address":@"5",
-//                                       @"goodsclassify":@""
-//                                       };
-//        [self inquireNeedlistInfo:myParameters];
-//    };
-    
 }
 
 -(void)Category:(NSNotification*)info{
