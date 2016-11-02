@@ -66,11 +66,12 @@
     /*禽畜类*/
     NGGBirdsController*BirdsView=[[NGGBirdsController alloc]init];
     [self addChildViewController:BirdsView];
+    self.navigationItem.title=@"选择物品分类";
 }
 
 #pragma mark-添加标题栏和图片
 -(void)setupTitlesView{
-    UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.ngg_width, 30)];
+    UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.ngg_width, 30)];
     titleView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.7];
     [self.view addSubview:titleView];
     self.titleView=titleView;

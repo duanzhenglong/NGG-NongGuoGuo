@@ -8,6 +8,7 @@
 
 #import "NGGDonePurchaseViewController.h"
 #import "NGGTwoViewCell.h"
+#import "NGGRefreshHeader.h"
 @interface NGGDonePurchaseViewController () <UITableViewDelegate,
                                              UITableViewDataSource>
 @property(nonatomic, strong) NSArray *DataArray;
@@ -18,15 +19,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  self.tableView.contentInset = UIEdgeInsetsMake(99, 0, 10, 0);
+//
+  self.tableView.contentInset = UIEdgeInsetsMake(27, 0, 60, 0);
   /*给tableView添加颜色*/
   self.tableView.backgroundColor = NGGCommonBgColor;
   self.DataArray = [[NSArray alloc] init];
   /*禁止垂直滚动*/
   self.tableView.showsVerticalScrollIndicator = NO;
-
-  [self RequireQueryMyPurchase];
+  self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.mj_header=[NGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RequireQueryMyPurchase)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark -获取农业信息
@@ -39,7 +41,7 @@
   NSString *urlPath = QueryMyPurchaseURL;
 
   NSDictionary *QueryMyPurchase = @{
-    @"userid" : @"1",
+    @"userid" : @(USERDEFINE.currentUser.userId),
     @"status" : @"1"
 
   };
@@ -54,22 +56,22 @@
             stringWithFormat:@"%@", [responseDic valueForKey:@"code"]];
 
         if ([str isEqualToString:@"500"]) {
-          NGGLog(@"没有采购数据！");
         } else {
           if ([str isEqualToString:@"200"]) {
-            NGGLog(@"获取数据成功！");
+           
             self.DataArray = [NGGGoodsAttribute
                 mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
 
             dispatch_async(dispatch_get_main_queue(), ^{
               [self.tableView reloadData];
             });
+              [self.tableView.mj_header endRefreshing];
           }
         }
 
       }
       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"请求失败，请检查网络!%@", error);
+       [self.tableView.mj_header endRefreshing];
       }];
 }
 

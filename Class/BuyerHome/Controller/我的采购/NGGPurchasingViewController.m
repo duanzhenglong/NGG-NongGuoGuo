@@ -7,7 +7,7 @@
 //
 
 #import "NGGPurchasingViewController.h"
-
+#import "NGGRefreshHeader.h"
 @interface NGGPurchasingViewController () <UITableViewDelegate,
                                            UITableViewDataSource>
 @property(nonatomic, strong) NSMutableArray *DataArray;
@@ -19,12 +19,16 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 75, 0);
+  self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 55, 0);
   /*给tableView添加颜色*/
   self.tableView.backgroundColor = NGGCommonBgColor;
   self.DataArray = [[NSMutableArray alloc] init];
   /*禁止垂直滚动*/
   self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.mj_header=[NGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RequireQueryMyPurchase)];
+    [self.tableView.mj_header beginRefreshing];
+    
 }
 
 #pragma mark -获取网络信息
@@ -37,7 +41,7 @@
   NSString *urlPath = QueryMyPurchaseURL;
 
   NSDictionary *QueryMyPurchase = @{
-    @"userid" : @"1",
+    @"userid" : @(USERDEFINE.currentUser.userId),
     @"status" : @"0"
 
   };
@@ -52,11 +56,10 @@
           dispatch_async(dispatch_get_main_queue(), ^{
               [self.tableView reloadData];
           });
-
+          [self.tableView.mj_header endRefreshing];
       }
-
       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"请求失败，请检查网络!%@", error);
+        [self.tableView.mj_header endRefreshing];
 
       }];
 }
@@ -94,7 +97,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 - (void)viewWillAppear:(BOOL)animated {
-  [self.tableView reloadData];
+    [super viewWillAppear:animated];
   [self RequireQueryMyPurchase];
 }
 

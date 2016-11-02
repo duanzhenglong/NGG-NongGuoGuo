@@ -32,8 +32,17 @@
     [self setimageArray];
      /***创建控件***/
     [self CreatCustomizeControls];
-    UIBarButtonItem *button=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(collectClick:)];
-    self.navigationItem.rightBarButtonItem=button;
+    /***收藏***/
+    UIButton* Btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [Btn setBackgroundColor:NGGTheMeColor];
+    [Btn setTitle:@"收藏" forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [Btn.titleLabel setFont:[UIFont systemFontOfSize:17 weight:1]];
+    [Btn sizeToFit];
+    [Btn addTarget:self action:@selector(collectClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:Btn];
+    self.navigationItem.title=self.attribute.supplylist_goodsname;
     
 }
 

@@ -291,6 +291,7 @@
 
 #pragma mark-刷新界面
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self viewDidLoad];
 }
 

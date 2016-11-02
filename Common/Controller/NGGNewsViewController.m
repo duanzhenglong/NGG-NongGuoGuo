@@ -66,7 +66,7 @@
 
 #pragma mark-添加标题栏和图片
 -(void)setupTitlesView{
-    UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.ngg_width, 30)];
+    UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.ngg_width, 30)];
     titleView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.7];
     [self.view addSubview:titleView];
     self.titleView=titleView;
@@ -106,6 +106,7 @@
     //默认选择第一个按钮
     firstTitleButton.selected=YES;
     self.selectedTitleButton =firstTitleButton;
+    self.navigationItem.title=firstTitleButton.currentTitle;
 }
 
 #pragma mark-titleButtonClick的点击事件
@@ -114,6 +115,7 @@
     self.selectedTitleButton.selected=NO;
     titleButton.selected=YES;
     self.selectedTitleButton=titleButton;
+    self.navigationItem.title=titleButton.currentTitle;
     //指示器跟随滚动
     [UIView animateWithDuration:0.25 animations:^{
         self.indicatorView.ngg_width=titleButton.titleLabel.ngg_width;

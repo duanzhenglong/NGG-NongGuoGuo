@@ -24,7 +24,6 @@
     self.tableView.sectionHeaderHeight=40;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Category:) name:@"Category" object:nil];
-
      /***根据分类查询物品信息***/
     NSDictionary *myParameters = @{
                                    @"address":@"",
@@ -32,6 +31,7 @@
                                    };
     [self inquireNeedlistInfo:myParameters];
 }
+
 
 #pragma mark-根据分类查询物品信息
 -(void)inquireNeedlistInfo:(NSDictionary*)dic{
@@ -109,7 +109,6 @@
                                   @"goodsclassify":@""
                                   };
    [self inquireNeedlistInfo:myParameters];
-
 }
 
 #pragma mark-Button2的响应事件

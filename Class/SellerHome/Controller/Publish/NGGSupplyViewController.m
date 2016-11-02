@@ -8,8 +8,7 @@
 
 #import "NGGSupplyViewController.h"
 #import "NGGAddressSelectView.h"
-#import "HX_AddPhotoView.h"
-@interface NGGSupplyViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HX_AddPhotoViewDelegate>{
+@interface NGGSupplyViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     __block NSInteger addressid;
 }
 @property (strong, nonatomic) UITextField* textfield1;
@@ -47,7 +46,6 @@
 
 #pragma mark-发布货品
 -(void)ButtonClick:(UIButton*)sender{
-    NGGLog(@"addressid;%ld",addressid);
     if ([self.textfield2.text isEqualToString:@""]) {
         [self NoticeInfo:@"货品名称不能为空!"];return;
     }
@@ -96,6 +94,63 @@
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
+}
+
+-(void)Button1:(UIButton*)sender{
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *button1=[UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIImagePickerController *PickerImage = [[UIImagePickerController alloc]init];
+        //获取方式:通过相机
+        PickerImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+        PickerImage.allowsEditing = YES;
+        PickerImage.delegate = self;
+        [self presentViewController:PickerImage animated:YES completion:nil];
+    }];
+    UIAlertAction *button2=[UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        /***创建图片选择器***/
+        UIImagePickerController* picker=[[UIImagePickerController alloc]init];
+        /***设置选择器选择资源的类型***/
+        picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.delegate=self;
+        picker.allowsEditing=YES;
+        [self presentViewController:picker animated:YES completion:nil];
+    }];
+    UIAlertAction *button3=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:button1];
+    [alert addAction:button2];
+    [alert addAction:button3];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark-imagepicker代理
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    UIImage* image=[info objectForKey:UIImagePickerControllerEditedImage];
+    if (image==nil) {
+        image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+    [self.imageviewArray addObject:image];
+    CGFloat imageW=(SCREEN_WIDTH-60)/3-2;
+    CGFloat imageH=79;
+    NSInteger count=self.imageviewArray.count;
+    if (self.imageviewArray.count>6) {
+        count=6;
+    }
+    for (int i=0; i<count; i++) {
+        UIImageView*image=[[UIImageView alloc]init];
+        image.ngg_x=(i%3)*imageW+60+(i%3+1);
+        image.ngg_y=(i/3)*imageH+(i/3+1);
+        image.ngg_width=imageW;
+        image.ngg_height=imageH;
+        image.image=self.imageviewArray[i]; 
+        [self.pictureView addSubview:image];
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark-上传图片
@@ -275,18 +330,10 @@
     view8.backgroundColor=[UIColor whiteColor];
     [self.tableView.tableHeaderView addSubview:view8];
     self.pictureView=view8;
-    
-    HX_AddPhotoView *addPhotoView = [[HX_AddPhotoView alloc] initWithMaxPhotoNum:8 WithSelectType:SelectPhoto];
-    addPhotoView.delegate = self;
-    addPhotoView.backgroundColor = [UIColor whiteColor];
-    addPhotoView.frame = CGRectMake(0, 45, SCREEN_WIDTH, 0);
-    [addPhotoView setSelectPhotos:^(NSArray *photos, NSArray *videoFileNames, BOOL iforiginal) {
-        for (int i=0; i<photos.count; i++) {
-            UIImageView *imageView=(UIImageView*)photos[i];
-            [self.imageviewArray addObject:imageView.image];
-        }
-    }];
-    [view8 addSubview:addPhotoView];
+    UIButton*button1=[[UIButton alloc]initWithFrame:CGRectMake(16, 20, 40, 35)];
+    [button1 setImage:[UIImage imageNamed:@"xiangji"] forState:UIControlStateNormal];
+    [button1 addTarget:self action:@selector(Button1:) forControlEvents:UIControlEventTouchUpInside];
+    [view8 addSubview:button1];
     
     /*创建发布button*/
     UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH-40, 40)];
@@ -324,7 +371,6 @@
         addressid=tag;
     };
 }
-
 
 #pragma mark-获取提示信息
 -(void)NoticeInfo:(NSString *)message{

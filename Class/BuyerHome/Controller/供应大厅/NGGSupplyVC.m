@@ -9,6 +9,7 @@
 #import "AFNetworking.h"
 #import "NGGSupplyVC.h"
 #import "NGGGoodsTableViewCell.h"
+#import "NGGRefreshHeader.h"
 @interface NGGSupplyVC ()
 
 @property(strong, nonatomic) NSArray *DataArray;
@@ -21,7 +22,6 @@
   [super viewDidLoad];
 
   [self createInitDate];
-  [self requestSupply];
 }
 
 - (void)createInitDate {
@@ -32,6 +32,8 @@
   self.tableView.sectionHeaderHeight = 50;
   /*初始化数据*/
   self.DataArray = [[NSArray alloc] init];
+    self.tableView.mj_header=[NGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestSupply)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 //获取网络数据进行解析
@@ -57,6 +59,7 @@
             self.DataArray = [NGGGoodsProperty
                 mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
               kDISPATCH_MAIN_THREAD([self.tableView reloadData];);
+              [self.tableView.mj_header endRefreshing];
           }
         }
 

@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title=@"会员特权";
     self.tableView.backgroundColor=NGGCommonBgColor;
     self.tableView.sectionHeaderHeight=50;
     self.tableView.sectionFooterHeight=50;
@@ -142,6 +143,8 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    
     [self.view3 removeFromSuperview];
+    [super viewWillDisappear:animated];
 }
 @end

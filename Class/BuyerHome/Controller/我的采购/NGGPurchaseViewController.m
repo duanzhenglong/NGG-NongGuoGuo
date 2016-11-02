@@ -32,8 +32,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  /*标题*/
-  self.navigationItem.title = @"我的采购";
 
   /*设置scrollview的属性*/
   [self setScrollviewAttribute];
@@ -90,7 +88,7 @@
 #pragma mark -添加标题栏
 - (void)setupTitlesView {
   UIView *titleView =
-      [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.ngg_width, 30)];
+      [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.ngg_width, 30)];
   titleView.backgroundColor =
       [[UIColor whiteColor] colorWithAlphaComponent:0.7];
   [self.view addSubview:titleView];
@@ -121,6 +119,7 @@
                                  titieButtonH - 10)];
     view.backgroundColor = NGGCommonBgColor;
     [self.titleView addSubview:view];
+    
   }
   //找出第一个按钮
   UIButton *firstTitleButton = titleView.subviews.firstObject;
@@ -138,6 +137,7 @@
   //默认选择第一个按钮
   firstTitleButton.selected = YES;
   self.selectedTitleButton = firstTitleButton;
+    self.navigationItem.title=firstTitleButton.currentTitle;
 }
 
 #pragma mark -titleButtonClick的点击事件
@@ -146,6 +146,7 @@
   self.selectedTitleButton.selected = NO;
   titleButton.selected = YES;
   self.selectedTitleButton = titleButton;
+    self.navigationItem.title=titleButton.currentTitle;
   //指示器跟随滚动
   [UIView animateWithDuration:0.25
                    animations:^{

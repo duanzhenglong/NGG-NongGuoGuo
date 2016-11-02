@@ -42,7 +42,7 @@
 }
 #pragma mark-页面加载时更新table
 -(void)viewWillAppear:(BOOL)animated
-{
+{   [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 #pragma mark - Table view data source

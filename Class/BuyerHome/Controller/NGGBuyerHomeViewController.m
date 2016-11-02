@@ -254,11 +254,4 @@ static NSString *const NGGGoodsTableViewCellId = @"NGGGoodsTableViewCell";
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    UITabBarController*tabbar=(UITabBarController *)self.parentViewController.parentViewController.parentViewController;
-        if (tabbar.tabBar.hidden==YES) {
-        tabbar.tabBar.hidden=NO;
-        }
-}
-
 @end

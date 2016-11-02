@@ -43,7 +43,7 @@
 #pragma mark-创建Button
 -(void)CreatCustomizeControls:(NSArray*)Array{
     /***创建装button的背景***/
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 94, SCREEN_WIDTH, SCREEN_HEIGHT-94)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT-94)];
     [self.view addSubview:view];
     
     

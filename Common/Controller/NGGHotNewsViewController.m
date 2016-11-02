@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.contentInset = UIEdgeInsetsMake(95, 0, 49, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 49, 0);
     self.tableView.backgroundColor=NGGCommonBgColor;
     
     [self RequireNewsInfo];

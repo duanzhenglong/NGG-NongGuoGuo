@@ -71,7 +71,7 @@ static int flg;
 
 #pragma mark-viewWillAppear
 -(void )viewWillAppear:(BOOL)animated
-{    
+{   [super viewWillAppear:animated];
     [self updataImg];
     [self setCellTitle];
 }

@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title=@"电话特权";
     self.tableView.backgroundColor=NGGCommonBgColor;
     self.tableView.sectionHeaderHeight=50;
     self.tableView.sectionFooterHeight=50;
@@ -139,9 +140,5 @@
     NGGOrderViewController* Order=[[NGGOrderViewController alloc]init];
     Order.flg=2;
     [self.navigationController pushViewController:Order animated:YES];
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [self.view3 removeFromSuperview];
 }
 @end

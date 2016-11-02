@@ -16,6 +16,7 @@
 #import "NGGPublishSupply.h"
 #import "NGGGoodsClassifyMenuController.h"
 #import "NGGSellerHomeHeaderView.h"
+#import "NGGRefreshHeader.h"
 
 #import "NGGFunctionViewCell.h"
 #import "NGGGoodsClassViewCell.h"
@@ -57,8 +58,14 @@ static int flg;
     [self registerCells];
      /*添加右发布按钮*/
     [self AddRightPublishBtn];
-     /***今日推荐信息***/
-    [self inquireNeedlistInfo];
+     /***刷新***/
+    [self setRefreshView];
+}
+
+#pragma mark-刷新
+-(void)setRefreshView{
+    self.tableView.mj_header=[NGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(inquireNeedlistInfo)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark-今日推荐信息
@@ -77,6 +84,7 @@ static int flg;
                   if ([str isEqualToString:@"200"]) {
                       self.DataArray = [NGGGoodsProperty mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
                       kDISPATCH_MAIN_THREAD([self.tableView reloadData];);
+                      [self.tableView.mj_header endRefreshing];
                   }
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -90,6 +98,7 @@ static int flg;
             if ([str isEqualToString:@"查询成功！"]) {
                 self.DataArray=[NGGGoodsAttribute mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
                 [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
         }];
@@ -98,9 +107,16 @@ static int flg;
 
 #pragma mark-发布按钮
 -(void)AddRightPublishBtn{
-    UIBarButtonItem*AddBtn=[[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(PublishBtnClick:)];
-    [AddBtn setTintColor:NGGTheMeColor];
-    self.navigationItem.rightBarButtonItem=AddBtn;
+    /***发布***/
+    UIButton* Btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [Btn setBackgroundColor:NGGTheMeColor];
+    [Btn setTitle:@"发布" forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [Btn.titleLabel setFont:[UIFont systemFontOfSize:17 weight:1]];
+    [Btn sizeToFit];
+    [Btn addTarget:self action:@selector(PublishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:Btn];
 }
 
 #pragma mark-供应事件
@@ -299,7 +315,8 @@ static int flg;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-   if (flg==USERDEFINE.currentUser.Usermark)  return;
+    [super viewWillAppear:animated];
+    if (flg==USERDEFINE.currentUser.Usermark)  return;
     [self viewDidLoad];
 }
 @end

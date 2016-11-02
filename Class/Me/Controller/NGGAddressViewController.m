@@ -51,7 +51,7 @@
 }
 #pragma mark-viewWillAppear
 -(void)viewWillAppear:(BOOL)animated
-{
+{  [super viewWillAppear:animated];
     //获取地址数据
     [self gainDataClick];
 }

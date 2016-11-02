@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=NGGCommonBgColor;
-    self.tableView.contentInset=UIEdgeInsetsMake(95, 0, 20, 0);
+    self.tableView.contentInset=UIEdgeInsetsMake(30, 0, 50, 0);
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     /***获取我供应中的数据***/
     [self inqureMySupplyInfo];

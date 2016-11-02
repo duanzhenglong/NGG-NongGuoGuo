@@ -36,7 +36,7 @@ static int flg;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-  
+  [super viewWillAppear:animated];
     if (flg==USERDEFINE.currentUser.Usermark)  return;
     
     for (UIViewController *vc in self.childViewControllers) {

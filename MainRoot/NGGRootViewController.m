@@ -10,7 +10,7 @@
 #import "NGGSellerBuyerViewController.h"
 #import "NGGChatViewController.h"
 #import "NGGMeViewController.h"
-#import "NGGTabBar.h"
+#import "NGGNavigationController.h"
 #import "NGGSellerHomeViewController.h"
 @interface NGGRootViewController ()
 
@@ -30,11 +30,11 @@
 #pragma mark-初始化设置控制器
 -(void)InitializeSetChildVc{
     /*卖家&买家控制器*/
-    [self setupChildVc:[[UINavigationController alloc]initWithRootViewController:[[NGGSellerHomeViewController alloc]init]] title:@"首页" image:@"HomeNormalicon" selectedImage:@"HomeSelecticon"];
+    [self setupChildVc:[[NGGNavigationController alloc]initWithRootViewController:[[NGGSellerHomeViewController alloc]init]] title:@"首页" image:@"HomeNormalicon" selectedImage:@"HomeSelecticon"];
     /*聊一聊控制器*/
-    [self setupChildVc:[[UINavigationController alloc]initWithRootViewController:[[NGGChatViewController alloc]init]] title:@"聊一聊" image:@"ChatNormalicon" selectedImage:@"ChatSelecticon"];
+    [self setupChildVc:[[NGGNavigationController alloc]initWithRootViewController:[[NGGChatViewController alloc]init]] title:@"聊一聊" image:@"ChatNormalicon" selectedImage:@"ChatSelecticon"];
     /*我的控制器*/
-    [self setupChildVc:[[UINavigationController alloc]initWithRootViewController:[[NGGMeViewController alloc]init]] title:@"个人中心" image:@"MeNormalicon" selectedImage:@"MeSelecticon"];
+    [self setupChildVc:[[NGGNavigationController alloc]initWithRootViewController:[[NGGMeViewController alloc]init]] title:@"个人中心" image:@"MeNormalicon" selectedImage:@"MeSelecticon"];
 }
 
 #pragma mark-统一文字属性
