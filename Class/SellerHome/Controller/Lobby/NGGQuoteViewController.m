@@ -29,7 +29,7 @@
 #pragma mark-创建控件
 -(void)CreatCustomizeControls{
      /*添加1视图*/
-    UIView*view1=[[UIView alloc]initWithFrame:CGRectMake(0, 84, SCREEN_WIDTH, 40)];
+    UIView*view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     view1.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:view1];
     
@@ -96,7 +96,7 @@
     view5.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:view5];
     
-    self.textview=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    self.textview=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
     self.textview.text=@"填写更多关于你的产品信息.......";
     self.textview.textColor=[UIColor lightGrayColor];
     [self.textview setFont:[UIFont systemFontOfSize:16 weight:3]];
@@ -105,12 +105,12 @@
     self.textview.delegate=self;
     
      /*创建报价button*/
-    UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(20, SCREEN_HEIGHT-60, SCREEN_WIDTH-40, 40)];
+    UIButton*button=[[UIButton alloc]initWithFrame:CGRectMake(20, SCREEN_HEIGHT-124, SCREEN_WIDTH-40, 40)];
     [button setBackgroundColor:NGGTheMeColor];
     [button setTitle:@"报  价" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:22 weight:3]];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:18 weight:1]];
     [button addTarget:self action:@selector(ButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     button.layer.cornerRadius=5;
     button.layer.masksToBounds=YES;

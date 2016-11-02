@@ -38,8 +38,17 @@
     self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
     self.tableView.tableHeaderView.backgroundColor=NGGCommonBgColor;
     self.tableView.sectionFooterHeight=60;
-    UIBarButtonItem *button=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(collectClick:)];
-    self.navigationItem.rightBarButtonItem=button;
+    /***收藏***/
+    UIButton* Btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [Btn setBackgroundColor:NGGTheMeColor];
+    [Btn setTitle:@"收藏" forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [Btn.titleLabel setFont:[UIFont systemFontOfSize:17 weight:1]];
+    [Btn sizeToFit];
+    [Btn addTarget:self action:@selector(collectClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:Btn];
+    self.navigationItem.title=self.attribute.needlist_goodsname;
     /**]
      *  创建控件
      */
@@ -171,24 +180,6 @@
     imageView1.image=[UIImage imageNamed:@"shi"];
     [view addSubview:imageView1];
     self.Vimageview=imageView1;
-    
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
-    /***背景***/
-    UIView *view7=[[UIView alloc]initWithFrame:CGRectMake(0, window.ngg_height-50, SCREEN_WIDTH, 50)];
-    view7.backgroundColor=[UIColor whiteColor];
-    [window addSubview:view7];
-    self.view7=view7;
-    /*创建去报价Button*/
-    UIButton*DscButton=[[UIButton alloc]initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH-40, 40)];
-    [DscButton.titleLabel setFont:[UIFont systemFontOfSize:18 weight:2]];
-    [DscButton setTitle:@"去报价" forState:UIControlStateNormal];
-    [DscButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [DscButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    DscButton.layer.cornerRadius=5;
-    DscButton.layer.masksToBounds=YES;
-    [DscButton setBackgroundColor:NGGColorFromRGB(0x30c2bd)];
-    [DscButton addTarget:self action:@selector(DscButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [view7 addSubview:DscButton];
 
 }
 
@@ -213,6 +204,24 @@
     return SCREEN_HEIGHT-180;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    /***背景***/
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 1, SCREEN_WIDTH, 40)];
+    view.backgroundColor=[UIColor whiteColor];
+    /*创建去报价Button*/
+    UIButton*DscButton=[[UIButton alloc]initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH-40, 45)];
+    [DscButton.titleLabel setFont:[UIFont systemFontOfSize:18 weight:2]];
+    [DscButton setTitle:@"去报价" forState:UIControlStateNormal];
+    [DscButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [DscButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    DscButton.layer.cornerRadius=5;
+    DscButton.layer.masksToBounds=YES;
+    [DscButton setBackgroundColor:NGGColorFromRGB(0x30c2bd)];
+    [DscButton addTarget:self action:@selector(DscButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:DscButton];
+    return view;
+}
+
 #pragma mark-报价
 -(void)DscButtonClick:(UIButton*)sender{
     NGGQuoteViewController*quote=[[NGGQuoteViewController alloc]init];
@@ -221,9 +230,5 @@
     [self.navigationController pushViewController:quote animated:YES];
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.view7 removeFromSuperview];
-}
 
 @end

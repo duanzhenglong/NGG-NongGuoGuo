@@ -67,7 +67,9 @@ NSString * const collectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.ph
 NSString * const scollectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect2/collectgoods";
 /***26.用户认证***/
 NSString * const certificationURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/user/certification";
-
+/***27.我的收藏***/
+NSString * const MycollectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect/Mycollectgoods";
+NSString * const sMycollectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect2/Mycollectgoods";
 
 //############################################################################
 
@@ -85,13 +87,10 @@ NSString *const RemoveAddressURL = @"http://10.110.5.87:8888/NongGuoGuo/index.ph
 
 /*11.选择默认地址*/
 NSString *const ChooseAddrssURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/address/chooseaddrss";
-
 /*12.更改头像*/
 NSString *const UpdateHeaderimgURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/user/updateheaderimg";
-
 /*13.下载头像*/
 NSString *const DownLoadHeaderImgURL =@"http://10.110.5.87:8888/NongGuoGuo/images/header/";
-
 /*14.修改密码*/
 NSString *const UpdatePwdURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/user/updatepwd";
 

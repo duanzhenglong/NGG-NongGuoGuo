@@ -280,7 +280,7 @@ static int flg;
         if (USERDEFINE.currentUser.Usermark==0) {
             return 115;
         }
-        return 150;
+        return 145;
     }
     return 80;
 }

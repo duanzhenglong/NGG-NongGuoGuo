@@ -46,11 +46,6 @@
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
     view.backgroundColor=NGGCutLineColor;
     [self.contentView addSubview:view];
-//    /***下面的分割线***/
-//    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, 0.5)];
-//    view1.backgroundColor=NGGCutLineColor;
-//    [self.contentView addSubview:view1];
-    
     /*创建图片*/
     self.ImgView=[[UIImageView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH/4,SCREEN_WIDTH/4)];
     self.ImgView.ngg_centerY=55;

@@ -140,8 +140,9 @@ UIKIT_EXTERN NSString * const collectgoodsURL;
 UIKIT_EXTERN NSString * const scollectgoodsURL;
 /***26.用户认证***/
 UIKIT_EXTERN NSString * const certificationURL;
-
-
+/***27.我的收藏***/
+UIKIT_EXTERN NSString * const MycollectgoodsURL;
+UIKIT_EXTERN NSString * const sMycollectgoodsURL;
 
 
 

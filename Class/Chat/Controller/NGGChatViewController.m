@@ -8,6 +8,7 @@
 
 #import "NGGChatViewController.h"
 #import "NGGCertificationViewController.h"
+#import "NGGMyCollectController.h"
 @interface NGGChatViewController ()
 
 @end
@@ -22,22 +23,37 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString* CellID=@"CellId";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellID];
-    if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
+    if (indexPath.row==0) {
+        static NSString* CellID=@"CellId";
+        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellID];
+        if (!cell) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
+        }
+        cell.textLabel.text=@"实名认证";
+        return cell;
+    }else{
+        static NSString* CellID=@"CellId";
+        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellID];
+        if (!cell) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
+        }
+        cell.textLabel.text=@"我的收藏";
+        return cell;
     }
-    cell.textLabel.text=@"实名认证";
-    return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NGGCertificationViewController*cer=[[NGGCertificationViewController alloc]init];
-    [self.navigationController pushViewController:cer animated:YES];
+    if (indexPath.row==0) {
+        NGGCertificationViewController*cer=[[NGGCertificationViewController alloc]init];
+        [self.navigationController pushViewController:cer animated:YES];
+    }else{
+        NGGMyCollectController*cer=[[NGGMyCollectController alloc]init];
+        [self.navigationController pushViewController:cer animated:YES];
+    }
 }
 @end
