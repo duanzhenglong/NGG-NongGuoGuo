@@ -9,14 +9,13 @@
 #import "AppDelegate.h"
 #import "NGGRootViewController.h"
 #import <SMS_SDK/SMSSDK.h>
-#import "EMSDK.h"
 @interface AppDelegate ()
 @end
  /*SMS key*/
 #define appkey @"176feffeed52e"
 #define app_secrect @"32fb3ea4e0bf47df58b9a3d9f26742b3"
  /*环信 key*/
-#define Appkey @"1146160926178516#nongguoguo"
+#define Appkey @""
 
 @implementation AppDelegate
 
@@ -57,11 +56,7 @@
 
 #pragma mark-注册环信AppKey
 -(void)RegisterAppkey{
-    //AppKey:注册的AppKey，详细见下面注释。
-    //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
-    EMOptions *options = [EMOptions optionsWithAppkey:Appkey];
-    options.apnsCertName = @"istore_dev";
-    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    
 }
 
 

@@ -66,7 +66,7 @@
 
 #pragma mark-添加标题栏和图片
 -(void)setupTitlesView{
-    UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.ngg_width, 30)];
+    UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.ngg_width, 40)];
     titleView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.7];
     [self.view addSubview:titleView];
     self.titleView=titleView;

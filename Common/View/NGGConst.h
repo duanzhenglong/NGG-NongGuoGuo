@@ -143,7 +143,8 @@ UIKIT_EXTERN NSString * const certificationURL;
 /***27.我的收藏***/
 UIKIT_EXTERN NSString * const MycollectgoodsURL;
 UIKIT_EXTERN NSString * const sMycollectgoodsURL;
-
+/***28.计算卖家商品店铺次数***/
+UIKIT_EXTERN NSString * const supplyNumURL;
 
 
 

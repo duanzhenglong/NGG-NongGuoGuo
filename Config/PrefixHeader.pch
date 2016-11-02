@@ -34,7 +34,7 @@
 /**6.发布按钮*/
 #import "NGGPublishSupply.h"
 /**7.环信SDK头文件*/
-#import "EMSDK.h"
+
 /**8.图片下载*/
 #import "UIImageView+WebCache.h"
 /***9.时间计算***/

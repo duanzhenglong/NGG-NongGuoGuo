@@ -43,6 +43,8 @@
     [Btn addTarget:self action:@selector(collectClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:Btn];
     self.navigationItem.title=self.attribute.supplylist_goodsname;
+     /***记录浏览次数***/
+    [self BrowseNum];
     
 }
 
@@ -59,6 +61,20 @@
         [self NoticeInfo:str];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NGGLog(@"11");
+    }];
+}
+
+-(void)BrowseNum{
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    
+    NSDictionary *myParameters = @{
+                                   @"supplyid":@(self.attribute.supplylist_id)
+                                   };
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:supplyNumURL parameters:myParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NGGLog(@"11");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NGGLog(@"12");
     }];
 }
 

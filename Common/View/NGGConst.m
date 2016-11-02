@@ -70,6 +70,9 @@ NSString * const certificationURL = @"http://10.110.5.87:8888/NongGuoGuo/index.p
 /***27.我的收藏***/
 NSString * const MycollectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect/Mycollectgoods";
 NSString * const sMycollectgoodsURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/mycollect2/Mycollectgoods";
+ /***28.计算卖家商品店铺次数***/
+NSString * const supplyNumURL = @"http://10.110.5.87:8888/NongGuoGuo/index.php/home/supplylist/supplyNum";
+
 
 //############################################################################
 

@@ -230,8 +230,7 @@
             /*再将当前用户信息储存到沙盒中*/
             NSString *path=[NSString stringWithFormat:@"%@/Documents/user.plist",NSHomeDirectory()];
             [dic writeToFile:path atomically:YES];
-             /*环信服务器登陆*/
-//            [self LoginHyphenate];
+            
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             [self NoticeInfo:str];
@@ -241,18 +240,7 @@
     }];
 }
 
-#pragma mark-环信服务器登陆
--(void)LoginHyphenate{
-    /*判断是否设置了自动登录*/
-    BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
-    if (!isAutoLogin) {
-        EMError *error = [[EMClient sharedClient] loginWithUsername:iphoneText.text password:passwordText.text];
-        if (!error) {
-            NSLog(@"环信服务器登陆登录成功");
-            [[EMClient sharedClient].options setIsAutoLogin:YES]; //自动登录
-        }
-    }
-}
+
 
 #pragma mark-注册按钮触发事件
 -(void)ClickRegister:(UIButton*)sender{

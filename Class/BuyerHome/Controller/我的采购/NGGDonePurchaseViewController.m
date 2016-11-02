@@ -49,26 +49,11 @@
   [manager POST:urlPath
       parameters:QueryMyPurchase
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        NSDictionary *responseDic = (NSDictionary *)responseObject;
-
-        NSString *str = [NSString
-            stringWithFormat:@"%@", [responseDic valueForKey:@"code"]];
-
-        if ([str isEqualToString:@"500"]) {
-        } else {
-          if ([str isEqualToString:@"200"]) {
-           
             self.DataArray = [NGGGoodsAttribute
                 mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
               [self.tableView reloadData];
-            });
-              [self.tableView.mj_header endRefreshing];
-          }
-        }
-
+             [self.tableView.mj_header endRefreshing];
       }
       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        [self.tableView.mj_header endRefreshing];

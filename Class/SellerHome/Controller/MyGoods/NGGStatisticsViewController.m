@@ -21,14 +21,38 @@
     [super viewDidLoad];
      /***背景颜色***/
     self.view.backgroundColor=NGGCommonBgColor;
+    self.navigationItem.title=@"效果统计";
      /***创建控件***/
     [self CreatCustomizeControls];
+    [self inqureMySupplyInfo];
+}
+
+
+
+#pragma mark-获取我的供应中的数据
+-(void)inqureMySupplyInfo{
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    
+    NSDictionary *myParameters = @{
+                                   @"userid":[NSString stringWithFormat:@"%d",USERDEFINE.currentUser.userId],//卖家id
+                                   };
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:mysupplyURL parameters:myParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSArray* arr=responseObject[@"result"];
+        int num=0;
+        for (int i=0; i<arr.count; i++) {
+            NSDictionary*dic=arr[i];
+            num+=[dic[@"susupplylist_num"] intValue];
+        }
+        self.Num1.text=[NSString stringWithFormat:@"%d",num];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
 }
 
 #pragma mark-自定义控件
 -(void)CreatCustomizeControls{
     /***背景1***/
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT/3-10)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3-10)];
     view.backgroundColor=[UIColor orangeColor];
     [self.view addSubview:view];
      /***分割线***/
@@ -49,8 +73,8 @@
     /***几个人访问你的数量***/
     UILabel*Alabel1=[[UILabel alloc]initWithFrame:CGRectMake(12, Alabel.ngg_bottom+10, 100, view.ngg_height/2)];
     Alabel1.textColor=[UIColor whiteColor];
-    [Alabel1 setFont:[UIFont systemFontOfSize:80 weight:1]];
-    Alabel1.text=@"2";
+    [Alabel1 setFont:[UIFont systemFontOfSize:70 weight:1]];
+    Alabel1.text=@"0";
     [view addSubview:Alabel1];
     self.Num1=Alabel1;
     /***描述***/
@@ -64,8 +88,8 @@
     /***几个人访问你的数量***/
     UILabel*Alabel3=[[UILabel alloc]initWithFrame:CGRectMake(12, 40, 100, view2.ngg_height/2)];
     Alabel3.textColor=[UIColor whiteColor];
-    [Alabel3 setFont:[UIFont systemFontOfSize:80 weight:1]];
-    Alabel3.text=@"2";
+    [Alabel3 setFont:[UIFont systemFontOfSize:70 weight:1]];
+    Alabel3.text=@"0";
     [view2 addSubview:Alabel3];
     self.Num2=Alabel3;
     /***描述***/
@@ -89,9 +113,5 @@
 -(void)MoreClick:(UIButton*)sender{
     NGGLogFunc
 }
-
-
-
-
 
 @end

@@ -33,11 +33,11 @@
     self.DataArray = [[NSArray alloc] init];
     self.tableView.mj_header=[NGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestSupply)];
     [self.tableView.mj_header beginRefreshing];
+
 }
 
 //获取网络数据进行解析
 - (void)requestSupply {
-    
     NSDictionary*dic=@{@"userid":@(USERDEFINE.currentUser.userId)};
     NSString*url=[[NSString alloc]init];
     if (USERDEFINE.currentUser.Usermark==0) {
@@ -50,7 +50,6 @@
     [[AFHTTPRequestOperationManager alloc] init];
     //必须设置
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
- 
     [manager POST:url
        parameters:dic
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -61,7 +60,6 @@
                   self.DataArray = [NGGGoodsAttribute
                                     mj_objectArrayWithKeyValuesArray:responseObject[@"result"]];
               }
-              
               [self.tableView reloadData];
               [self.tableView.mj_header endRefreshing];
           }
@@ -107,6 +105,19 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         return cell;
     }
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 删除模型
+//    [self.DataArray removeObjectAtIndex:indexPath.row];
+    
+    // 刷新
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

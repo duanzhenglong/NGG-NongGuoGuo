@@ -205,23 +205,14 @@
     }];
 }
 
-#pragma mark-注册到环信服务器
+#pragma mark-注册到融云服务器
 -(void)registerHyphenate{
-    EMError *error = [[EMClient sharedClient] registerWithUsername:iphoneText.text password:passwordText.text];
-    if (error==nil) {
-        NSLog(@"注册到环信服务器成功");
-         /*注册完之后再登录到环信服务器*/
-        [self LoginHyphenate];
-    }
+   
 }
 
 #pragma mark-环信服务器登陆
 -(void)LoginHyphenate{
-        EMError *error = [[EMClient sharedClient] loginWithUsername:iphoneText.text password:passwordText.text];
-        if (!error) {
-            NSLog(@"环信服务器登陆登录成功");
-            [[EMClient sharedClient].options setIsAutoLogin:YES]; //自动登录
-        }
+    
 }
 
 #pragma mark-完成按钮触发事件
